@@ -1,58 +1,683 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ERP Dasar — Laravel & Filament
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyek ini merupakan **sistem ERP (Enterprise Resource Planning) dasar berbasis web** yang dibuat menggunakan **Laravel** dan **Filament**.
 
-## About Laravel
+Proyek ini dibuat sebagai sarana pembelajaran untuk memahami bagaimana membangun sistem administrasi/ERP menggunakan Laravel, khususnya dalam pembuatan **Admin Panel menggunakan Filament**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 Tujuan Proyek
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ERP ini dirancang sebagai dasar untuk mengelola berbagai data operasional perusahaan dalam satu sistem.
 
-## Learning Laravel
+Fitur yang akan dikembangkan secara bertahap meliputi:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 🔐 Login dan autentikasi pengguna
+- 👤 Manajemen pengguna
+- 🏢 Manajemen perusahaan
+- 📦 Manajemen produk/barang
+- 🏷️ Manajemen kategori
+- 👥 Manajemen pelanggan
+- 🚚 Manajemen pemasok
+- 🛒 Penjualan
+- 📥 Pembelian
+- 📊 Dashboard dan laporan
+- 🔑 Hak akses pengguna
+- 📝 Riwayat transaksi
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> Proyek ini masih dalam tahap pengembangan dan fitur dapat bertambah seiring proses pembelajaran.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+# 🛠️ Teknologi
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Teknologi utama yang digunakan:
+
+- **PHP 8.3+**
+- **Laravel 13**
+- **Filament**
+- **MySQL / MariaDB**
+- **Composer**
+- **Node.js & NPM**
+- **Git & GitHub**
+
+---
+
+# 📋 Persyaratan
+
+Sebelum menjalankan proyek, pastikan komputer telah memiliki:
+
+1. PHP
+2. Composer
+3. Node.js
+4. NPM
+5. MySQL/MariaDB
+6. Git
+
+Untuk memeriksa instalasi:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php -v
+composer -V
+node -v
+npm -v
+git --version
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+# 🚀 Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 1. Clone Repository
 
-## Code of Conduct
+Clone repository ke komputer:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+git clone <URL-REPOSITORY>
+```
 
-## Security Vulnerabilities
+Masuk ke folder proyek:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cd erp-project
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 2. Install Dependency Laravel
+
+Jalankan:
+
+```bash
+composer install
+```
+
+Perintah ini akan menginstall seluruh dependency PHP yang terdapat pada `composer.json`.
+
+---
+
+## 3. Install Dependency Frontend
+
+Jalankan:
+
+```bash
+npm install
+```
+
+Kemudian build asset:
+
+```bash
+npm run build
+```
+
+Saat melakukan development, dapat menggunakan:
+
+```bash
+npm run dev
+```
+
+---
+
+# ⚙️ Konfigurasi Environment
+
+Buat file `.env` berdasarkan `.env.example`.
+
+```bash
+cp .env.example .env
+```
+
+Pada Windows, jika perintah tersebut tidak dapat digunakan, buat salinan `.env.example` secara manual dan beri nama:
+
+```text
+.env
+```
+
+Kemudian generate application key:
+
+```bash
+php artisan key:generate
+```
+
+---
+
+# 🗄️ Konfigurasi Database
+
+Buat database baru melalui MySQL/MariaDB.
+
+Contoh:
+
+```text
+erp_project
+```
+
+Kemudian ubah konfigurasi database pada `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=erp_project
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Sesuaikan username dan password dengan konfigurasi database lokal.
+
+Setelah itu jalankan migration:
+
+```bash
+php artisan migrate
+```
+
+Jika project memiliki seeder:
+
+```bash
+php artisan db:seed
+```
+
+Atau:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> `migrate:fresh` akan menghapus seluruh tabel yang ada. Jangan gunakan pada database production.
+
+---
+
+# 🎨 Filament
+
+Filament digunakan sebagai **admin panel** untuk mengelola data ERP.
+
+Secara sederhana:
+
+```text
+Laravel
+   │
+   ├── Model
+   ├── Migration
+   ├── Controller
+   │
+   └── Filament
+        └── Admin Panel
+             ├── Resource
+             ├── Form
+             ├── Table
+             └── Page
+```
+
+Filament membantu membuat halaman CRUD tanpa harus membuat seluruh halaman administrasi dari awal.
+
+---
+
+# 📚 Konsep Dasar Filament
+
+## 1. Resource
+
+Resource merupakan bagian utama yang digunakan untuk membuat halaman administrasi sebuah model.
+
+Contohnya:
+
+```bash
+php artisan make:filament-resource Company
+```
+
+Perintah tersebut akan membuat resource untuk model `Company`.
+
+Resource biasanya memiliki beberapa bagian:
+
+```text
+CompanyResource
+├── Pages
+│   ├── CreateCompany
+│   ├── EditCompany
+│   └── ListCompanies
+├── Schemas
+└── Tables
+```
+
+Struktur dapat berbeda tergantung versi Filament yang digunakan.
+
+---
+
+# 📝 Form
+
+Form digunakan untuk memasukkan atau mengubah data.
+
+Contoh field:
+
+```text
+TextInput
+Textarea
+Select
+DatePicker
+FileUpload
+Toggle
+```
+
+Misalnya data perusahaan:
+
+```text
+Nama Perusahaan
+Alamat
+Nomor Telepon
+Email
+Logo
+```
+
+Form akan digunakan pada halaman:
+
+```text
+Create
+Edit
+```
+
+---
+
+# 📊 Table
+
+Table digunakan untuk menampilkan data yang tersimpan di database.
+
+Contohnya:
+
+```text
++----+----------------+----------------+
+| ID | Company        | Phone          |
++----+----------------+----------------+
+| 1  | Company A      | 08123456789    |
+| 2  | Company B      | 08234567890    |
++----+----------------+----------------+
+```
+
+Filament menyediakan berbagai column seperti:
+
+```text
+TextColumn
+ImageColumn
+IconColumn
+BadgeColumn
+```
+
+Table juga dapat memiliki:
+
+- Search
+- Sort
+- Filter
+- Pagination
+- Actions
+- Bulk Actions
+
+---
+
+# 🖼️ File Upload dan Image
+
+Untuk mengupload gambar, misalnya logo perusahaan, gunakan `FileUpload`.
+
+Contoh konsep:
+
+```php
+FileUpload::make('logo')
+    ->image()
+    ->disk('public')
+    ->directory('logos')
+```
+
+`directory()` digunakan untuk menentukan lokasi penyimpanan file yang di-upload.
+
+Sedangkan untuk menampilkan gambar pada table:
+
+```php
+ImageColumn::make('logo')
+    ->disk('public')
+```
+
+Jangan menyamakan penggunaan `directory()` pada `FileUpload` dengan `ImageColumn`.
+
+---
+
+# 🔗 Storage Link
+
+Jika menggunakan disk `public`, buat symbolic link storage:
+
+```bash
+php artisan storage:link
+```
+
+File yang di-upload ke:
+
+```text
+storage/app/public/logos
+```
+
+dapat diakses melalui:
+
+```text
+public/storage/logos
+```
+
+---
+
+# 🧱 Membuat Model + Migration + Resource
+
+Contoh alur pengembangan data `Company`:
+
+```text
+1. Buat Model
+       ↓
+2. Buat Migration
+       ↓
+3. Tentukan struktur database
+       ↓
+4. Jalankan Migration
+       ↓
+5. Buat Filament Resource
+       ↓
+6. Buat Form
+       ↓
+7. Buat Table
+       ↓
+8. Test CRUD
+```
+
+Contoh perintah:
+
+```bash
+php artisan make:model Company -m
+```
+
+Kemudian buat resource:
+
+```bash
+php artisan make:filament-resource Company
+```
+
+---
+
+# 🔐 Admin Panel
+
+Setelah Filament dikonfigurasi, admin panel dapat diakses melalui URL:
+
+```text
+http://127.0.0.1:8000/admin
+```
+
+Untuk menjalankan server Laravel:
+
+```bash
+php artisan serve
+```
+
+Kemudian buka:
+
+```text
+http://127.0.0.1:8000/admin
+```
+
+---
+
+# 👨‍💻 Workflow Pengembangan
+
+Pengembangan fitur sebaiknya dilakukan secara bertahap.
+
+Contoh workflow:
+
+```text
+Analisis kebutuhan
+       ↓
+Desain database
+       ↓
+Migration
+       ↓
+Model
+       ↓
+Filament Resource
+       ↓
+Form
+       ↓
+Table
+       ↓
+Testing
+       ↓
+Commit Git
+       ↓
+Push GitHub
+```
+
+---
+
+# 🌱 Struktur Project
+
+Struktur utama Laravel:
+
+```text
+erp-project/
+│
+├── app/
+│   ├── Filament/
+│   │   └── Resources/
+│   │
+│   ├── Models/
+│   └── Providers/
+│
+├── database/
+│   ├── migrations/
+│   └── seeders/
+│
+├── resources/
+│   ├── views/
+│   └── css/
+│
+├── routes/
+│   └── web.php
+│
+├── public/
+│
+├── storage/
+│
+├── tests/
+│
+├── .env
+├── composer.json
+├── package.json
+└── README.md
+```
+
+---
+
+# 🧪 Menjalankan Project
+
+Untuk development:
+
+Terminal 1:
+
+```bash
+php artisan serve
+```
+
+Terminal 2:
+
+```bash
+npm run dev
+```
+
+Kemudian akses:
+
+```text
+http://127.0.0.1:8000
+```
+
+Untuk admin panel:
+
+```text
+http://127.0.0.1:8000/admin
+```
+
+---
+
+# 🐛 Troubleshooting
+
+## `vendor/autoload.php` tidak ditemukan
+
+Jika muncul:
+
+```text
+Failed opening required vendor/autoload.php
+```
+
+jalankan:
+
+```bash
+composer install
+```
+
+---
+
+## `public/storage` tidak ditemukan
+
+Jalankan:
+
+```bash
+php artisan storage:link
+```
+
+---
+
+## Asset tidak ditemukan
+
+Jalankan:
+
+```bash
+npm install
+npm run build
+```
+
+Untuk development:
+
+```bash
+npm run dev
+```
+
+---
+
+## Database tidak ditemukan
+
+Pastikan:
+
+1. Database sudah dibuat.
+2. Konfigurasi `.env` benar.
+3. MySQL/MariaDB sedang berjalan.
+4. Migration sudah dijalankan.
+
+Kemudian:
+
+```bash
+php artisan migrate
+```
+
+---
+
+# 📌 Catatan Pembelajaran Filament
+
+Filament bukan pengganti Laravel.
+
+Filament berjalan **di atas Laravel** dan memanfaatkan komponen Laravel seperti:
+
+- Eloquent
+- Model
+- Migration
+- Authentication
+- Validation
+- Database
+
+Karena itu, sebelum membuat fitur dengan Filament, penting untuk memahami dasar:
+
+```text
+PHP
+ ↓
+Laravel
+ ↓
+Database & Eloquent
+ ↓
+Filament
+ ↓
+ERP
+```
+
+Filament digunakan untuk mempercepat pembuatan **administrative interface**, sedangkan Laravel tetap menjadi framework utama aplikasi.
+
+---
+
+# 📈 Roadmap
+
+### Phase 1 — Dasar
+
+- [x] Setup Laravel
+- [x] Setup Filament
+- [x] Admin Panel
+- [ ] Company
+- [ ] User
+
+### Phase 2 — Master Data
+
+- [ ] Produk
+- [ ] Kategori
+- [ ] Pelanggan
+- [ ] Supplier
+- [ ] Satuan
+- [ ] Gudang
+
+### Phase 3 — Transaksi
+
+- [ ] Pembelian
+- [ ] Penjualan
+- [ ] Detail transaksi
+- [ ] Stok
+- [ ] Pembayaran
+
+### Phase 4 — Laporan
+
+- [ ] Laporan penjualan
+- [ ] Laporan pembelian
+- [ ] Laporan stok
+- [ ] Laporan keuntungan
+
+### Phase 5 — Hak Akses
+
+- [ ] Administrator
+- [ ] Kasir
+- [ ] Gudang
+- [ ] Manager
+- [ ] Permission
+
+---
+
+# 🤝 Kontribusi
+
+Pengembangan proyek dilakukan secara bertahap menggunakan Git.
+
+Sebelum mengerjakan fitur:
+
+1. Buat issue.
+2. Buat branch.
+3. Kerjakan fitur.
+4. Test fitur.
+5. Commit perubahan.
+6. Push branch.
+7. Buat Pull Request.
+
+Contoh branch:
+
+```text
+feature/company-management
+feature/product-management
+feature/sales
+feature/purchase
+```
+
+---
+
+# 📄 Status Project
+
+**Status:** 🚧 Development
+
+Project ini dibuat sebagai proyek pembelajaran dan pengembangan ERP dasar menggunakan Laravel dan Filament.
